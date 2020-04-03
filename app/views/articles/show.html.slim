@@ -1,17 +1,11 @@
-p#notice
-	= notice
 = link_to 'Open all articles', articles_path, class: "btn btn-primary text-white"
-.row
-	.columns.medium-offset-2
-    	h2 = title(@article.title)
+.row.columns.medium-offset-2
+  h2 = title(@article.title)
 
-.row 
-    .columns
-    	h5 = title("Content:") 
-    	= @article.content
+.row.columns
+  h5 Content:
+  = @article.content
 br
-.row
-   	.columns
-        h5 = title("Status:")  
-      	= @article.status
-          	
+.row.columns
+  h5 Status:
+  = @article.status
