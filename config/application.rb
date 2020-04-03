@@ -27,7 +27,7 @@ module RailsBase
     config.middleware.use Rack::Deflater
 
     # Set default From address for all Mailers
-    config.action_mailer.default_options = { from: ENV.fetch("MAILER_SENDER_ADDRESS", "localhost") }
+    config.action_mailer.default_options = { from: ENV.fetch("MAILER_SENDER_ADDRESS", "localhost:3000") }
 
     # Set URL options to be able to use url_for helpers
     config.action_mailer.default_url_options = { host: ENV.fetch("HOST", "localhost") }
