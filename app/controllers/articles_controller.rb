@@ -1,62 +1,51 @@
 class ArticlesController < ApplicationController
-	before_action :set_article, only: [:show, :edit, :update, :destroy]
-	before_action :authenticate_user!, only: [:new, :create]
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create]
 
-	def index
-    	@articles = Article.all
-    	@articles = @articles.order("created_at ASC")
-  	end
+  def index
+    @articles = Article.all
+    @articles = @articles.order("created_at ASC")
+  end
 
-  	def show
-  	end
+  def show
+  end
 
-  	def new
-    	@article = Article.new
-  	end
+  def new
+    @article = Article.new
+  end
 
-  	def edit
-  	end
+  def edit
+  end
 
-  	def create
-    	@article = current_user.articles.build(article_params)
-
-    	respond_to do |format|
-      		if @article.save
-        	format.html { redirect_to @article, notice: 'article was successfully created.' }
-        	format.json { render :show, status: :created, location: @article }
-      		else
-        		format.html { render :new }
-        		format.json { render json: @article.errors, status: :unprocessable_entity }
-      		end
-    	end
-  	end
-
-	def update
-	    respond_to do |format|
-	    	if @article.update(article_params)
-	        	format.html { redirect_to @article, notice: 'article was successfully updated.' }
-	        	format.json { render :show, status: :ok, location: @article }
-	      	else
-	        	format.html { render :edit }
-	        	format.json { render json: @article.errors, status: :unprocessable_entity }
-	      	end
-	    end
-	end
-
-  	def destroy
-    	@article.destroy
-    	respond_to do |format|
-      		format.html { redirect_to articles_url, notice: 'article was successfully destroyed.' }
-      		format.json { head :no_content }
-    	end
-  	end
-
-  	private
-    def set_article
-    	@article = Article.find(params[:id])
+  def create
+    @article = current_user.articles.build(article_params)
+    if @article.save
+      redirect_to @article, notice: "article was successfully created."
+    else
+      render :new
     end
+  end
 
-    def article_params
-      	params.require(:article).permit(:title, :content, :status)
+  def update
+    if @article.update(article_params)
+      redirect_to @article, notice: "article was successfully updated."
+    else
+      render :edit
     end
+  end
+
+  def destroy
+    @article.destroy
+    redirect_to articles_url, notice: "article was successfully destroyed."
+  end
+
+  private
+
+  def set_article
+    @article = Article.find(params[:id])
+  end
+
+  def article_params
+    params.require(:article).permit(:title, :content, :status)
+  end
 end
