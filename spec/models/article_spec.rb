@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Article, type: :model do
+RSpec.describe Article do
   subject(:article) { described_class.new(title: "Test article", content: "This is test article for testing with RSpec") }
   before { article.save }
 
