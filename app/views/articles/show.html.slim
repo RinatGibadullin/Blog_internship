@@ -9,3 +9,7 @@ br
 .row.columns
   h5 Status:
   = @article.status
+.row.columns
+  = link_to 'Edit', edit_article_path(@article)
+  |  
+  = link_to 'Delete', @article, data: { confirm: 'Are you sure?' }, method: :delete
