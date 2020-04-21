@@ -1,0 +1,21 @@
+.row
+  .columns.medium-offset-5
+    h1 Articles
+
+.row.medium-10.medium-offset-1.columns.end
+  table
+    thead
+      tr
+        th title
+        th edit
+        th destroy
+
+    tbody
+      - @articles.each do |article|
+        tr
+          td = link_to article.title, article
+          td = link_to 'Edit', edit_article_path(article)
+          td = link_to 'Delete', article, data: { confirm: 'Are you sure?' }, method: :delete
+
+  br
+  = link_to 'New Article', new_article_path

@@ -1,4 +1,11 @@
 .row
   .columns
     h2
-      = title("Home")
+      = @admin.full_name
+.row
+  .medium-4.columns
+    ul.vertical.menu
+		  = active_link_to "Articles", articles_path, active: :exclusive, wrap_tag: :li
+		  = active_link_to "About me", articles_path, active: :exclusive, wrap_tag: :li
+		  = active_link_to "Contact me", articles_path, active: :exclusive, wrap_tag: :li
+

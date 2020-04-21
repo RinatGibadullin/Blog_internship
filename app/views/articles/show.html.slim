@@ -1,0 +1,15 @@
+= link_to 'Open all articles', articles_path, class: "btn btn-primary text-white"
+.row.columns.medium-offset-2
+  h2 = title(@article.title)
+
+.row.columns
+  h5 Content:
+  = @article.content
+br
+.row.columns
+  h5 Status:
+  = @article.status
+.row.columns
+  = link_to 'Edit', edit_article_path(@article)
+  |  
+  = link_to 'Delete', @article, data: { confirm: 'Are you sure?' }, method: :delete
